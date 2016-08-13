@@ -22,6 +22,7 @@ namespace iNet_Monitor.a.Logic
                 {
                     if (reply.Status != IPStatus.Success)
                     {
+                        // Add 3points to make it more visible on graph that we are offline
                         AddPing(-10);
                         AddPing(-10);
                         AddPing(-10);
@@ -29,12 +30,14 @@ namespace iNet_Monitor.a.Logic
                     }
                     else
                     {
+                        // Add a point
                         AddPing(reply.RoundtripTime);
                         value = reply.RoundtripTime;
                     }
                 }
                 else
                 {
+                    // Add 3points to make it more visible on graph that we are offline
                     AddPing(-10);
                     AddPing(-10);
                     AddPing(-10);
@@ -44,6 +47,7 @@ namespace iNet_Monitor.a.Logic
             }
             catch (Exception)
             {
+                // Add 3points to make it more visible on graph that we are offline
                 AddPing(-10);
                 AddPing(-10);
                 AddPing(-10);
@@ -61,21 +65,15 @@ namespace iNet_Monitor.a.Logic
 
         private static void AddPing(long rtt)
         {
+            // Give point X value
             double id = ++a.Assets.Data.counter;
             long value = rtt;
             double remVal = a.Assets.Data.counter - 300;
 
+            // Remove the oldest point
             a.Assets.Data.PointsOnline.RemoveAt(0);
-
+            // Add new point
             a.Assets.Data.PointsOnline.Add(new ChartPoint(id, value));
-
-            //if (value > 0 && value <= Properties.Settings.Default.SlowThreshold)
-            //    a.Assets.Data.PointsOnline.Add(new ChartPoint(id, value));
-            //if (value > Properties.Settings.Default.SlowThreshold)
-            //    a.Assets.Data.PointsOnline.Add(new ChartPoint(id, value));
-            //if (value == -1)
-            //    a.Assets.Data.PointsOnline.Add(new ChartPoint(id, value));
-
         }
     }
 }

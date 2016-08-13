@@ -14,17 +14,11 @@ namespace iNet_Monitor.a.Logic
         private static readonly string application_Name = "iNet Monitor - NovaKitty Software";
         public static string BaseDir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 
+
+        // Methods for CurrentUser
         public static void AddApplicationToCurrentUserStartup()
         {
             using (RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true))
-            {
-                key.SetValue(application_Name, "\"" + System.Reflection.Assembly.GetExecutingAssembly().Location + "\"");
-            }
-        }
-
-        public static void AddApplicationToAllUserStartup()
-        {
-            using (RegistryKey key = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true))
             {
                 key.SetValue(application_Name, "\"" + System.Reflection.Assembly.GetExecutingAssembly().Location + "\"");
             }
@@ -38,14 +32,6 @@ namespace iNet_Monitor.a.Logic
             }
         }
 
-        public static void RemoveApplicationFromAllUserStartup()
-        {
-            using (RegistryKey key = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true))
-            {
-                key.DeleteValue(application_Name, false);
-            }
-        }
-
         public static bool IsStartupCurrentUser()
         {
             using (RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", false))
@@ -54,6 +40,24 @@ namespace iNet_Monitor.a.Logic
                 return found != null;
             }
         }
+        
+        // Methods for AllUsers
+        public static void AddApplicationToAllUserStartup()
+        {
+            using (RegistryKey key = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true))
+            {
+                key.SetValue(application_Name, "\"" + System.Reflection.Assembly.GetExecutingAssembly().Location + "\"");
+            }
+        }
+
+        public static void RemoveApplicationFromAllUserStartup()
+        {
+            using (RegistryKey key = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true))
+            {
+                key.DeleteValue(application_Name, false);
+            }
+        }
+
         public static bool IsStartupAllUsers()
         {
             using (RegistryKey key = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", false))
@@ -63,6 +67,7 @@ namespace iNet_Monitor.a.Logic
             }
         }
 
+        // Other methods
         public static bool IsUserAdministrator()
         {
             //bool value to hold our return value
