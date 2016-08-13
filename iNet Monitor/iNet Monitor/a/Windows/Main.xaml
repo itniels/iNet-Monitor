@@ -1,0 +1,133 @@
+﻿<Window x:Class="iNet_Monitor.a.Windows.Main"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:iNet_Monitor.a.Windows"
+        xmlns:sparrow="http://sparrowtoolkit.codeplex.com/wpf"
+        xmlns:viewModels="clr-namespace:iNet_Monitor.a.ViewModels"
+        xmlns:tb="http://www.hardcodet.net/taskbar"
+        mc:Ignorable="d"
+        Title="iNet Monitor v1.0 (By NovaKitty Software)" Height="281.11" Width="715.392" Topmost="True" WindowStyle="ThreeDBorderWindow" Background="#FF1F1F1F" Icon="/iNet Monitor;component/app.ico" Loaded="Window_Loaded" Closing="Window_Closing" ResizeMode="NoResize">
+    <Window.Resources>
+        <ContextMenu x:Key="TrayMenu">
+            <MenuItem Header="Open" Click="OnNotifyIcon_Click"/>
+            <MenuItem Header="Exit" Click="MenuItem_Click"/>
+        </ContextMenu>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <!-- Menu -->
+            <RowDefinition Height="20"/>
+            <!-- Info -->
+            <RowDefinition Height="91*"/>
+            <!-- Graph -->
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0">
+            <MenuItem Header="File">
+                <MenuItem Header="Exit" Foreground="Red" Click="MenuItem_Click"/>
+            </MenuItem>
+            <MenuItem Header="Options">
+                <MenuItem Header="Settings" Click="MenuItem_Click_1"/>
+            </MenuItem>
+            <MenuItem Header="About" IsEnabled="False">
+                <MenuItem Header="Website" IsEnabled="False"/>
+                <MenuItem Header="Donate" IsEnabled="False"/>
+                <MenuItem Header="Check for Updates" IsEnabled="False"/>
+            </MenuItem>
+        </Menu>
+
+
+
+        <tb:TaskbarIcon
+            x:Name="MyNotifyIcon"
+            IconSource="../../Resources/Unknown.ico"
+            ToolTipText="iNet Monitor"
+            ContextMenu="{StaticResource TrayMenu}">
+            <!--<tb:TaskbarIcon.TrayPopup>
+                <Border
+                    Background="White"
+                    BorderBrush="Orange"
+                    BorderThickness="2"
+                    CornerRadius="4"
+                    Width="160">
+                    <StackPanel>
+                        <TextBox
+                            x:Name="popupText"
+                            Margin="5,10,5,10"
+                            Width="200"
+                            Height="24"
+                            Text="Enter Text..." />
+                        <Button
+                            Content="Close" 
+                            IsCancel="True"
+                            Margin="5,0,5,10"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center" />
+                    </StackPanel>
+                </Border>
+            </tb:TaskbarIcon.TrayPopup>-->
+        </tb:TaskbarIcon>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="110"/>
+                <ColumnDefinition Width="24"/>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Content="Computer Name:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="White" FontWeight="Bold" ToolTip="The name of this computer on the network."/>
+            <Label Grid.Row="1" Grid.Column="0" Content="Hostname:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="White" FontWeight="Bold" ToolTip="The public hostname of this computer."/>
+            <Label Grid.Row="2" Grid.Column="0" Content="LAN IP:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="White" FontWeight="Bold" ToolTip="The local IP of this computer."/>
+            <Label Grid.Row="3" Grid.Column="0" Content="WAN IP:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="White" FontWeight="Bold" ToolTip="The outside public (internet) IP of this computer."/>
+
+            <Image Grid.Row="0" Grid.Column="1" Name="Img_Copy_ComputerName" Source="/iNet Monitor;component/Resources/Copy16.png" Margin="0" Width="16" ToolTip="Copy Computer Name to clipboard." Focusable="True" MouseEnter="Img_Copy_MouseEnter" MouseLeave="Img_Copy_MouseLeave" Opacity="0.5" MouseDown="Img_Copy_MouseDown" MouseUp="Img_Copy_ComputerName_MouseUp"/>
+            <Image Grid.Row="1" Grid.Column="1" Name="Img_Copy_Hostname" Source="/iNet Monitor;component/Resources/Copy16.png" Margin="0" Width="16" ToolTip="Copy Hostname to clipboard." Focusable="True" MouseEnter="Img_Copy_MouseEnter" MouseLeave="Img_Copy_MouseLeave" Opacity="0.5" MouseDown="Img_Copy_MouseDown" MouseUp="Img_Copy_Hostname_MouseUp"/>
+            <Image Grid.Row="2" Grid.Column="1" Name="Img_Copy_LanIP" Source="/iNet Monitor;component/Resources/Copy16.png" Margin="0" Width="16" ToolTip="Copy LAN IP to clipboard." Focusable="True" MouseEnter="Img_Copy_MouseEnter" MouseLeave="Img_Copy_MouseLeave" Opacity="0.5" MouseDown="Img_Copy_MouseDown" MouseUp="Img_Copy_LanIP_MouseUp"/>
+            <Image Grid.Row="3" Grid.Column="1" Name="Img_Copy_WanIP" Source="/iNet Monitor;component/Resources/Copy16.png" Margin="0" Width="16" ToolTip="Copy WAN IP to clipboard." Focusable="True" MouseEnter="Img_Copy_MouseEnter" MouseLeave="Img_Copy_MouseLeave" Opacity="0.5" MouseDown="Img_Copy_MouseDown" MouseUp="Img_Copy_WanIP_MouseUp"/>
+                
+            
+
+            <Label Grid.Row="0" Grid.Column="2" Name="lbl_ComputerName" Content="Searching..." VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White"  Background="#FF282828"/>
+            <Label Grid.Row="1" Grid.Column="2" Name="lbl_Hostname" Content="Searching..." VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" Background="#FF282828"/>
+            <Label Grid.Row="2" Grid.Column="2" Name="lbl_LanIP" Content="Searching..." VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" Background="#FF282828"/>
+            <Label Grid.Row="3" Grid.Column="2" Name="lbl_WanIP" Content="Searching..." VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" Background="#FF282828"/>
+
+            <Label Grid.Row="0" Grid.Column="3" Content="Latency:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="White" FontWeight="Bold" ToolTip="The name of this computer on the network."/>
+            <Label Grid.Row="1" Grid.Column="3" Content="Avg. Latency:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="White" FontWeight="Bold" ToolTip="The name of this computer on the network."/>
+            <Label Grid.Row="2" Grid.Column="3" Content="Min / Max:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="White" FontWeight="Bold" ToolTip="The name of this computer on the network."/>
+            <Label Grid.Row="3" Grid.Column="3" Content="Status:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="White" FontWeight="Bold" ToolTip="The name of this computer on the network."/>
+
+            <Label Grid.Row="0" Grid.Column="4" Name="lbl_Latency" Content="Waiting for data..." VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" Background="#FF282828"/>
+            <Label Grid.Row="1" Grid.Column="4" Name="lbl_AvgLatency" Content="Waiting for data..." VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" Background="#FF282828"/>
+            <Label Grid.Row="2" Grid.Column="4" Name="lbl_MinMax" Content="Waiting for data..." VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" Background="#FF282828"/>
+            <Label Grid.Row="3" Grid.Column="4" Name="lbl_Status" Content="" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" Background="#FF282828" FontWeight="Bold" FontSize="14"/>
+
+        </Grid>
+
+
+
+        <sparrow:SparrowChart Name="PingChart" Grid.Row="2" Foreground="#FFD4D4D4" Margin="4,2,2,10" CompositingQuality="HighSpeed" SmoothingMode="AntiAlias">
+            <sparrow:SparrowChart.XAxis>
+                <sparrow:LinearXAxis Header="Time" MajorTicksPosition="Cross" Opacity="0.5" Visibility="Collapsed" UseLayoutRounding="False" MinorTicksPosition="Cross" MinorTicksCount="5"/>
+            </sparrow:SparrowChart.XAxis>
+            <sparrow:SparrowChart.YAxis>
+                <sparrow:LinearYAxis Header="MS" MajorTicksPosition="Cross" Opacity="0.75" UseLayoutRounding="False" MinValue="0" />
+            </sparrow:SparrowChart.YAxis>
+            <sparrow:AreaSeries Name="LineSeries" PointsSource="{Binding Online}" XPath="x" YPath="y" StrokeThickness="2" UseSinglePart="false" Opacity="0.75"/>
+            <!--<sparrow:LineSeries PointsSource="{Binding Slow}" XPath="x" YPath="y" StrokeThickness="2" Stroke="#FFD1D925"/>
+            <sparrow:LineSeries PointsSource="{Binding Offline}" XPath="x" YPath="y" StrokeThickness="4" Stroke="#FFD92525"/>-->
+        </sparrow:SparrowChart>
+
+
+    </Grid>
+</Window>

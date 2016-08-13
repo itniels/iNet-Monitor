@@ -1,0 +1,12 @@
+﻿<Window x:Class="iNet_Monitor.a.Windows.Startup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:iNet_Monitor.a.Windows"
+        mc:Ignorable="d"
+        Title="iNet Monitor Launcher" Height="86.095" Width="363.905" Loaded="Window_Loaded" WindowState="Minimized" Focusable="False" ShowActivated="False" WindowStyle="ToolWindow">
+    <Grid>
+
+    </Grid>
+</Window>
