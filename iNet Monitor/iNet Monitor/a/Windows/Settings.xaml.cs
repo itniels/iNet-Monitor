@@ -19,6 +19,8 @@ namespace iNet_Monitor.a.Windows
     /// </summary>
     public partial class Settings : Window
     {
+        private readonly string appName = "iNet Monitor";
+
         public Settings()
         {
             InitializeComponent();
@@ -27,7 +29,7 @@ namespace iNet_Monitor.a.Windows
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             // Load values
-            chk_StartWithWindows.IsChecked = a.Logic.StartupManager.IsStartupCurrentUser();
+            chk_StartWithWindows.IsChecked = NovaKittySoftware.Wpf.StartupManager.CurrentUser.IsStartup(appName);
             chk_CheckForUpdates.IsChecked = Properties.Settings.Default.CheckForUpdates;
             chk_ShowPopups.IsChecked = Properties.Settings.Default.ShowPopups;
             chk_WarnAboutSlow.IsChecked = Properties.Settings.Default.WarnSlow;
@@ -91,9 +93,9 @@ namespace iNet_Monitor.a.Windows
             if (valid)
             {
                 if (chk_StartWithWindows.IsChecked == true)
-                    a.Logic.StartupManager.AddApplicationToCurrentUserStartup();
+                    NovaKittySoftware.Wpf.StartupManager.CurrentUser.AddApplicationToStartup(appName);
                 else
-                    a.Logic.StartupManager.RemoveApplicationFromCurrentUserStartup();
+                    NovaKittySoftware.Wpf.StartupManager.CurrentUser.RemoveApplicationFromStartup(appName);
 
                 Properties.Settings.Default.CheckForUpdates = chk_CheckForUpdates.IsChecked.Value;
                 Properties.Settings.Default.ShowPopups = chk_ShowPopups.IsChecked.Value;

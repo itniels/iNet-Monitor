@@ -66,6 +66,10 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WpfStartupManager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NovaKittySoftware.wpf.StartupManager.1.0.0\lib\net461\WpfStartupManager.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -82,7 +86,6 @@
     <Compile Include="a\Assets\eStatus.cs" />
     <Compile Include="a\Logic\GetSystemInfo.cs" />
     <Compile Include="a\Logic\Pinger.cs" />
-    <Compile Include="a\Logic\StartupManager.cs" />
     <Compile Include="a\Models\ChartPoint.cs" />
     <Compile Include="a\ViewModels\ChartViewModel.cs" />
     <Compile Include="a\Windows\Main.xaml.cs">
