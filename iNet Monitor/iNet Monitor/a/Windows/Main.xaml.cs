@@ -311,6 +311,18 @@ namespace iNet_Monitor.a.Windows
             f.ShowDialog();
             timer.Interval = new TimeSpan(0, 0, 0, 0, Properties.Settings.Default.PingInterval);
         }
+
+        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        {
+            var f = new a.Windows.About();
+            f.Owner = this;
+            f.ShowDialog();
+        }
+
+        private void MenuItem_Click_3(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HARWVNKCQWQYW");
+        }
     }
 
 

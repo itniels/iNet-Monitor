@@ -3,12 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:iNet_Monitor.a.Windows"
         xmlns:sparrow="http://sparrowtoolkit.codeplex.com/wpf"
-        xmlns:viewModels="clr-namespace:iNet_Monitor.a.ViewModels"
         xmlns:tb="http://www.hardcodet.net/taskbar"
         mc:Ignorable="d"
-        Title="iNet Monitor v1.0 (By NovaKitty Software)" Height="281.11" Width="715.392" Topmost="True" WindowStyle="ThreeDBorderWindow" Background="#FF1F1F1F" Icon="/iNet Monitor;component/app.ico" Loaded="Window_Loaded" Closing="Window_Closing" ResizeMode="NoResize">
+        Title="iNet Monitor v1.1 (By NovaKitty Software)" Height="281.11" Width="715.392" Topmost="True" WindowStyle="ThreeDBorderWindow" Background="#FF1F1F1F" Icon="/iNet Monitor;component/app.ico" Loaded="Window_Loaded" Closing="Window_Closing" ResizeMode="NoResize">
     <Window.Resources>
         <ContextMenu x:Key="TrayMenu">
             <MenuItem Header="Open" Click="OnNotifyIcon_Click"/>
@@ -31,9 +29,9 @@
             <MenuItem Header="Options">
                 <MenuItem Header="Settings" Click="MenuItem_Click_1"/>
             </MenuItem>
-            <MenuItem Header="About" IsEnabled="False">
-                <MenuItem Header="Website" IsEnabled="False"/>
-                <MenuItem Header="Donate" IsEnabled="False"/>
+            <MenuItem Header="About" Click="MenuItem_Click_3">
+                <MenuItem Header="About" Click="MenuItem_Click_2"/>
+                <MenuItem Header="Donate with PayPal"/>
                 <MenuItem Header="Check for Updates" IsEnabled="False"/>
             </MenuItem>
         </Menu>

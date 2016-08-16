@@ -88,6 +88,9 @@
     <Compile Include="a\Logic\Pinger.cs" />
     <Compile Include="a\Models\ChartPoint.cs" />
     <Compile Include="a\ViewModels\ChartViewModel.cs" />
+    <Compile Include="a\Windows\About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
     <Compile Include="a\Windows\Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
     </Compile>
@@ -125,6 +128,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="a\Windows\About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="a\Windows\Main.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
