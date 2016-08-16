@@ -316,6 +316,7 @@ namespace iNet_Monitor.a.Windows
         {
             var f = new a.Windows.About();
             f.Owner = this;
+            f.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             f.ShowDialog();
         }
 
