@@ -34,3 +34,15 @@ I would truly appreciate it! <3
 ## Can i not just download and install it?
 I am working really hard on getting a website up and running to host my software and a service to check and push updates, to
 make everyones lives much easier! So that will come very soon i promise :)
+
+## Credits
+#### Icons
+Icons are Commercial free license with no link back.
+
+Ressources:  
+http://www.iconarchive.com  
+https://www.iconfinder.com  
+
+#### Notify Icon
+By Philipp Sumi:  
+http://www.hardcodet.net/wpf-notifyicon
