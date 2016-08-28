@@ -39,7 +39,7 @@ make everyones lives much easier! So that will come very soon i promise :)
 #### Icons
 Icons are Commercial free license with no link back.
 
-Ressources:  
+*Ressources*:  
 http://www.iconarchive.com  
 https://www.iconfinder.com  
 
