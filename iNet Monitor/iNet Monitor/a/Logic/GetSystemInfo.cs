@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,7 +44,7 @@ namespace iNet_Monitor.a.Logic
                 a.Assets.Data.Hostname = hostname;
             }
 
-            
+
         }
 
         public static void GetComputerName()
@@ -83,9 +84,44 @@ namespace iNet_Monitor.a.Logic
             a.Assets.Data.LanIP = IP;
         }
 
+        public static void GetDNS()
+        {
+            string DNS = "";
+            bool first = true;
+            try
+            {
+                NetworkInterface[] networkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
+
+                foreach (NetworkInterface networkInterface in networkInterfaces)
+                {
+                    if (networkInterface.OperationalStatus == OperationalStatus.Up)
+                    {
+                        IPInterfaceProperties ipProperties = networkInterface.GetIPProperties();
+                        IPAddressCollection dnsAddresses = ipProperties.DnsAddresses;
+
+                        foreach (IPAddress dnsAdress in dnsAddresses)
+                        {
+                            if (first)
+                                DNS = "";
+                            else
+                                DNS += " | ";
+                            DNS += dnsAdress.ToString();
+                            first = false;
+                        }
+                    }
+                }
+                a.Assets.Data.DNS = DNS;
+            }
+            catch (Exception)
+            {
+                a.Assets.Data.DNS = "Unable to obtain!";
+            }
+
+        }
+
         public static void GetWanIP()
         {
-            string direction = "Unable to obtain!";
+            string direction;
             try
             {
                 WebRequest request = WebRequest.Create("http://checkip.dyndns.org/");
@@ -120,7 +156,7 @@ namespace iNet_Monitor.a.Logic
             {
                 a.Assets.Data.WanIP = direction;
             }
-            
+
         }
     }
 }

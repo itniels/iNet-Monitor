@@ -84,6 +84,7 @@ namespace iNet_Monitor.a.Windows
             a.Logic.GetSystemInfo.GetLanIP();
             a.Logic.GetSystemInfo.GetWanIP();
             a.Logic.GetSystemInfo.GetHostname();
+            a.Logic.GetSystemInfo.GetDNS();
         }
 
         private void bg_worker_Completed(object sender, RunWorkerCompletedEventArgs e)
@@ -132,6 +133,7 @@ namespace iNet_Monitor.a.Windows
             lbl_LanIP.Content = a.Assets.Data.LanIP;
             lbl_WanIP.Content = a.Assets.Data.WanIP;
             lbl_ComputerName.Content = a.Assets.Data.ComputerName;
+            lbl_DNS.Content = a.Assets.Data.DNS;
 
             if (value >= 0)
             {

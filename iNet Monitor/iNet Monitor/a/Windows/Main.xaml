@@ -6,7 +6,7 @@
         xmlns:sparrow="http://sparrowtoolkit.codeplex.com/wpf"
         xmlns:tb="http://www.hardcodet.net/taskbar"
         mc:Ignorable="d"
-        Title="iNet Monitor v1.1 (By NovaKitty Software)" Height="281.11" Width="715.392" Topmost="True" WindowStyle="ThreeDBorderWindow" Background="#FF1F1F1F" Icon="/iNet Monitor;component/app.ico" Loaded="Window_Loaded" Closing="Window_Closing" ResizeMode="NoResize">
+        Title="iNet Monitor v2.0 (By NovaKitty Software)" Height="380.11" Width="715.392" Topmost="True" WindowStyle="ThreeDBorderWindow" Background="#FF1F1F1F" Icon="/iNet Monitor;component/app.ico" Loaded="Window_Loaded" Closing="Window_Closing" ResizeMode="NoResize">
     <Window.Resources>
         <ContextMenu x:Key="TrayMenu">
             <MenuItem Header="Open" Click="OnNotifyIcon_Click"/>
@@ -25,6 +25,9 @@
         <Menu Grid.Row="0">
             <MenuItem Header="File">
                 <MenuItem Header="Exit" Foreground="Red" Click="MenuItem_Click"/>
+            </MenuItem>
+            <MenuItem Header="Account">
+                <MenuItem Header="Log in"/>
             </MenuItem>
             <MenuItem Header="Options">
                 <MenuItem Header="Settings" Click="MenuItem_Click_1"/>
@@ -75,6 +78,9 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="110"/>
@@ -85,30 +91,41 @@
             </Grid.ColumnDefinitions>
             <Label Grid.Row="0" Grid.Column="0" Content="Computer Name:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="White" FontWeight="Bold" ToolTip="The name of this computer on the network."/>
             <Label Grid.Row="1" Grid.Column="0" Content="Hostname:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="White" FontWeight="Bold" ToolTip="The public hostname of this computer."/>
-            <Label Grid.Row="2" Grid.Column="0" Content="LAN IP:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="White" FontWeight="Bold" ToolTip="The local IP of this computer."/>
-            <Label Grid.Row="3" Grid.Column="0" Content="WAN IP:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="White" FontWeight="Bold" ToolTip="The outside public (internet) IP of this computer."/>
-
+            <Label Grid.Row="2" Grid.Column="0" Content="Local IP:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="White" FontWeight="Bold" ToolTip="The local IP of this computer."/>
+            <Label Grid.Row="3" Grid.Column="0" Content="Public IP:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="White" FontWeight="Bold" ToolTip="The outside public (internet) IP of this computer."/>
+            <Label Grid.Row="4" Grid.Column="0" Content="ISP:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="White" FontWeight="Bold" ToolTip="Your Internet Service Provider."/>
+            <Label Grid.Row="5" Grid.Column="0" Content="Location" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="White" FontWeight="Bold" ToolTip="The Location of you IP address."/>
+            <Label Grid.Row="6" Grid.Column="0" Content="DNS Servers:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="White" FontWeight="Bold" ToolTip="The DNS Servers used for lookup of domain names."/>
+            
             <Image Grid.Row="0" Grid.Column="1" Name="Img_Copy_ComputerName" Source="/iNet Monitor;component/Resources/Copy16.png" Margin="0" Width="16" ToolTip="Copy Computer Name to clipboard." Focusable="True" MouseEnter="Img_Copy_MouseEnter" MouseLeave="Img_Copy_MouseLeave" Opacity="0.5" MouseDown="Img_Copy_MouseDown" MouseUp="Img_Copy_ComputerName_MouseUp"/>
             <Image Grid.Row="1" Grid.Column="1" Name="Img_Copy_Hostname" Source="/iNet Monitor;component/Resources/Copy16.png" Margin="0" Width="16" ToolTip="Copy Hostname to clipboard." Focusable="True" MouseEnter="Img_Copy_MouseEnter" MouseLeave="Img_Copy_MouseLeave" Opacity="0.5" MouseDown="Img_Copy_MouseDown" MouseUp="Img_Copy_Hostname_MouseUp"/>
             <Image Grid.Row="2" Grid.Column="1" Name="Img_Copy_LanIP" Source="/iNet Monitor;component/Resources/Copy16.png" Margin="0" Width="16" ToolTip="Copy LAN IP to clipboard." Focusable="True" MouseEnter="Img_Copy_MouseEnter" MouseLeave="Img_Copy_MouseLeave" Opacity="0.5" MouseDown="Img_Copy_MouseDown" MouseUp="Img_Copy_LanIP_MouseUp"/>
             <Image Grid.Row="3" Grid.Column="1" Name="Img_Copy_WanIP" Source="/iNet Monitor;component/Resources/Copy16.png" Margin="0" Width="16" ToolTip="Copy WAN IP to clipboard." Focusable="True" MouseEnter="Img_Copy_MouseEnter" MouseLeave="Img_Copy_MouseLeave" Opacity="0.5" MouseDown="Img_Copy_MouseDown" MouseUp="Img_Copy_WanIP_MouseUp"/>
-                
-            
+            <Image Grid.Row="4" Grid.Column="1" Name="Img_Copy_ISP" Source="/iNet Monitor;component/Resources/Copy16.png" Margin="0" Width="16" ToolTip="Copy WAN IP to clipboard." Focusable="True" MouseEnter="Img_Copy_MouseEnter" MouseLeave="Img_Copy_MouseLeave" Opacity="0.5" MouseDown="Img_Copy_MouseDown" MouseUp="Img_Copy_WanIP_MouseUp"/>
+            <Image Grid.Row="5" Grid.Column="1" Name="Img_Copy_Location" Source="/iNet Monitor;component/Resources/Copy16.png" Margin="0" Width="16" ToolTip="Copy WAN IP to clipboard." Focusable="True" MouseEnter="Img_Copy_MouseEnter" MouseLeave="Img_Copy_MouseLeave" Opacity="0.5" MouseDown="Img_Copy_MouseDown" MouseUp="Img_Copy_WanIP_MouseUp"/>
+            <Image Grid.Row="6" Grid.Column="1" Name="Img_Copy_DNS" Source="/iNet Monitor;component/Resources/Copy16.png" Margin="0" Width="16" ToolTip="Copy WAN IP to clipboard." Focusable="True" MouseEnter="Img_Copy_MouseEnter" MouseLeave="Img_Copy_MouseLeave" Opacity="0.5" MouseDown="Img_Copy_MouseDown" MouseUp="Img_Copy_WanIP_MouseUp"/>
 
             <Label Grid.Row="0" Grid.Column="2" Name="lbl_ComputerName" Content="Searching..." VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White"  Background="#FF282828"/>
             <Label Grid.Row="1" Grid.Column="2" Name="lbl_Hostname" Content="Searching..." VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" Background="#FF282828"/>
             <Label Grid.Row="2" Grid.Column="2" Name="lbl_LanIP" Content="Searching..." VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" Background="#FF282828"/>
             <Label Grid.Row="3" Grid.Column="2" Name="lbl_WanIP" Content="Searching..." VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" Background="#FF282828"/>
+            <Label Grid.Row="4" Grid.Column="2" Name="lbl_ISP" Content="Searching..." VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" Background="#FF282828"/>
+            <Label Grid.Row="5" Grid.Column="2" Name="lbl_Location" Content="Searching..." VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" Background="#FF282828"/>
+            <Label Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="3" Name="lbl_DNS" Content="Searching..." VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" Background="#FF282828"/>
 
-            <Label Grid.Row="0" Grid.Column="3" Content="Latency:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="White" FontWeight="Bold" ToolTip="The name of this computer on the network."/>
-            <Label Grid.Row="1" Grid.Column="3" Content="Avg. Latency:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="White" FontWeight="Bold" ToolTip="The name of this computer on the network."/>
-            <Label Grid.Row="2" Grid.Column="3" Content="Min / Max:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="White" FontWeight="Bold" ToolTip="The name of this computer on the network."/>
-            <Label Grid.Row="3" Grid.Column="3" Content="Status:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="White" FontWeight="Bold" ToolTip="The name of this computer on the network."/>
-
-            <Label Grid.Row="0" Grid.Column="4" Name="lbl_Latency" Content="Waiting for data..." VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" Background="#FF282828"/>
-            <Label Grid.Row="1" Grid.Column="4" Name="lbl_AvgLatency" Content="Waiting for data..." VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" Background="#FF282828"/>
-            <Label Grid.Row="2" Grid.Column="4" Name="lbl_MinMax" Content="Waiting for data..." VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" Background="#FF282828"/>
-            <Label Grid.Row="3" Grid.Column="4" Name="lbl_Status" Content="" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" Background="#FF282828" FontWeight="Bold" FontSize="14"/>
+            <Label Grid.Row="0" Grid.Column="3" Content="Logged in:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="White" FontWeight="Bold" ToolTip="The name of this computer on the network."/>
+            <Label Grid.Row="1" Grid.Column="3" Content="Latency:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="White" FontWeight="Bold" ToolTip="The name of this computer on the network."/>
+            <Label Grid.Row="2" Grid.Column="3" Content="Avg. Latency:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="White" FontWeight="Bold" ToolTip="The name of this computer on the network."/>
+            <Label Grid.Row="3" Grid.Column="3" Content="Min / Max:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="White" FontWeight="Bold" ToolTip="The name of this computer on the network."/>
+            <Label Grid.Row="4" Grid.Column="3" Content="Tor Exit Node:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="White" FontWeight="Bold" ToolTip="The name of this computer on the network."/>
+            <Label Grid.Row="5" Grid.Column="3" Content="Status:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="White" FontWeight="Bold" ToolTip="The name of this computer on the network."/>
+            
+            <Label Grid.Row="0" Grid.Column="4" Name="lbl_LoggedIn" Content="Not logged in..." VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FFC13037" Background="#FF282828"/>
+            <Label Grid.Row="1" Grid.Column="4" Name="lbl_Latency" Content="Waiting for data..." VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" Background="#FF282828"/>
+            <Label Grid.Row="2" Grid.Column="4" Name="lbl_AvgLatency" Content="Waiting for data..." VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" Background="#FF282828"/>
+            <Label Grid.Row="3" Grid.Column="4" Name="lbl_MinMax" Content="Waiting for data..." VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" Background="#FF282828"/>
+            <Label Grid.Row="4" Grid.Column="4" Name="lbl_TorNode" Content="Searching..." VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" Background="#FF282828"/>
+            <Label Grid.Row="5" Grid.Column="4" Name="lbl_Status" Content="" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" Background="#FF282828" FontWeight="Bold" FontSize="14"/>
 
         </Grid>
 

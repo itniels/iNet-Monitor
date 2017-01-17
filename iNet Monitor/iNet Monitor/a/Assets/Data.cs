@@ -18,6 +18,7 @@ namespace iNet_Monitor.a.Assets
         public static string ComputerName = "Searching...";
         public static string LanIP = "Searching...";
         public static string WanIP = "Searching...";
+        public static string DNS = "Searching...";
         public static eStatus Status = eStatus.Unknown;
         public static bool isStillRunningMessage = true;
         public static double counter = 300;

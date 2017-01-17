@@ -1,0 +1,116 @@
+﻿@model iNetMonitor.Domain.ApiModels.InternetInfoModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>iNet Monitor</h1>
+    <p class="lead">A free service for monitoring your internet connection.</p>
+    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Get the app &raquo;</a></p>
+</div>
+<div class="well well-sm">
+    @if (@Model.IPv4 != null)
+    {
+        <span class="text-IP-lg">
+            <h2>Your IP is: <b class="text-success">@Model.IPv4</b> using <span class="text-info">v4</span> protocol</h2>
+        </span>
+    }
+    else
+    {
+        <span class="text-IP-lg">
+            <h2>Your IP is: <b class="text-success">@Model.IPv6</b> using <span class="text-info">v6</span> protocol</h2>
+        </span>
+    }
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>IP Information</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <span><b>IPv4:</b></span>
+            </div>
+            <div class="col-md-8">
+                <span class="text-success">@Model.IPv4</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <span><b>IPv6:</b></span>
+            </div>
+            <div class="col-md-8">
+                <span class="text-success">@Model.IPv6</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <span><b>Hostname:</b></span>
+            </div>
+            <div class="col-md-8">
+                <span class="text-info">@Model.Hostname</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <h2>ISP Information</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <span><b>Name:</b></span>
+            </div>
+            <div class="col-md-8">
+                <span class="text-info">@Model.ISP</span>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>Location</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <span><b>Country:</b></span>
+            </div>
+            <div class="col-md-8">
+                <span class="text-info">@Model.Lok_Country</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <span><b>City:</b></span>
+            </div>
+            <div class="col-md-8">
+                <span class="text-info">@Model.Lok_City</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <h2>Using Tor</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <span><b>Tor exit node:</b></span>
+            </div>
+            <div class="col-md-8">
+                <span class="text-@(Model.TorNode == "No" ? "danger":"success")">@Model.TorNode</span>
+            </div>
+        </div>
+    </div>
+</div>
+<hr/>
+@*<div class="row">
+    <div class="col-md-12">
+        <div class="map-center">
+            <img src="~/Content/Images/Paypal-Donate-Button-Image.png"/>
+        </div>    
+    </div>
+    
+</div>
+<hr/>*@
+<div class="row">
+    <div class="col-md-12">
+        <div class="map-center">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2276625.4221511194!2d8.19112165398286!3d56.13519516364288!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x464b27b6ee945ffb%3A0x528743d0c3e092cd!2sDenmark!5e0!3m2!1sen!2sse!4v1484446990842" width="750" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
